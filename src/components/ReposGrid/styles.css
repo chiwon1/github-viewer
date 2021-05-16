@@ -1,0 +1,19 @@
+.card-list {
+  margin: 20px 0 0;
+}
+
+.card-list li {
+  display: flex;
+  justify-content: flex-start;
+  font-weight: 300;
+  font-size: 14px;
+}
+
+.card-list li:not(:last-of-type) {
+  margin-bottom: 5px;
+}
+
+.card-list svg {
+  margin-right: 5px;
+  height: 20px;
+}

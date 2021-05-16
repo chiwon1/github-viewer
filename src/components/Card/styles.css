@@ -1,0 +1,20 @@
+.card {
+  margin-bottom: 10px;
+  width: 250px;
+  padding: 20px;
+  border: 1px solid #f2f2f2;
+  border-radius: 2px;
+}
+
+.link {
+  text-decoration: underline;
+  font-weight: 300;
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 3px;
+  margin: 30px auto 50px;
+  display: block;
+}

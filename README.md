@@ -8,6 +8,11 @@ Github의 인기 저장소 목록을 확인할 수 있고, Github 사용자 간�
 
 ```sh
 npm install
+```
+
+## Development
+
+```sh
 npm start
 # Visit localhost:3000
 ```

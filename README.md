@@ -64,7 +64,7 @@ npm start
 ### After
 
 1. `<Loading />` 컴포넌트에 대한 Unit Test를 보강하세요. (`/spec/Loading.spec.js`)
-  - [Testing React Apps](https://create-react-app.dev/docs/running-tests/)
+    - [Testing React Apps](https://create-react-app.dev/docs/running-tests/)
 2. [Netlify](https://netlify.com/)를 이용하여 배포하기 ([create react app 참고](https://create-react-app.dev/docs/deployment/#netlify))
 3. 리액트 컴포넌트에서 말하는 Side Effect란 무엇인가?
 4. Virtual DOM에 대한 이해 및 [Diffing Algorithm](https://ko.reactjs.org/docs/reconciliation.html)에 대한 리서치

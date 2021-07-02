@@ -61,16 +61,11 @@ npm start
   1. `getProfile` 함수와 `getRepos` 함수를 Async/Await 기반으로 리팩터링 하기
   2. `request` 함수를 [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch)로 대체하기 (Async/Await 기반으로 유지해야 합니다.)
 
-### Advanced
+### After
 
-- [ ] `<Loading />` 컴포넌트에 대한 Unit Test를 보강하세요. (`/spec/Loading.spec.js`)
+1. `<Loading />` 컴포넌트에 대한 Unit Test를 보강하세요. (`/spec/Loading.spec.js`)
   - [Testing React Apps](https://create-react-app.dev/docs/running-tests/)
-- [ ] `npm test` 명령어를 이용하여 Test Coverage를 확인할 수 있습니다. 단순한 컴포넌트 1-2개를 선택하여 테스트를 작성해보고 Test Coverage를 높여보세요.
-- [ ] [Netlify](https://netlify.com/)를 이용하여 배포하기 ([create react app 참고](https://create-react-app.dev/docs/deployment/#netlify))
-
-## After
-
-1. 리액트 컴포넌트에서 말하는 Side Effect란 무엇인가?
-2. Virtual DOM에 대한 이해 및 [Diffing Algorithm](https://ko.reactjs.org/docs/reconciliation.html)에 대한 리서치
-3. 순수함수와 React 컴포넌트의 유사성 이해
-4. 클래스 컴포넌트와 함수형 컴포넌트의 장단점 및 비교
+2. [Netlify](https://netlify.com/)를 이용하여 배포하기 ([create react app 참고](https://create-react-app.dev/docs/deployment/#netlify))
+3. 리액트 컴포넌트에서 말하는 Side Effect란 무엇인가?
+4. Virtual DOM에 대한 이해 및 [Diffing Algorithm](https://ko.reactjs.org/docs/reconciliation.html)에 대한 리서치
+5. 클래스 컴포넌트와 함수형 컴포넌트의 장단점 및 비교

@@ -29,12 +29,6 @@ npm start
 2. Props 네이밍에 대한 고민
 3. `useEffect`의 사용법 및 Dependency 이해
 
-## Helpful readings
-
-- [Thinking in React](https://ko.reactjs.org/docs/thinking-in-react.html)
-- [Fragments](https://ko.reactjs.org/docs/fragments.html)
-- [PropTypes](https://ko.reactjs.org/docs/typechecking-with-proptypes.html)
-
 ## TODO
 
 인기 저장소 목록을 확인할 수 있는 기능은 이미 구현되어 있습니다. 여러분의 임무는 Github 사용자 간의 대결 기능을 만드는 것입니다. 다음과 같은 기능이 가능하도록 구현해주세요.

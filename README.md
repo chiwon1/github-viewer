@@ -62,3 +62,4 @@ npm start
 2. 리액트 컴포넌트에서 말하는 Side Effect란 무엇인가?
 3. Virtual DOM에 대한 이해 및 [Diffing Algorithm](https://ko.reactjs.org/docs/reconciliation.html)에 대한 리서치
 4. 클래스 컴포넌트와 함수형 컴포넌트의 장단점 및 비교
+5. 함수형 프로그래밍 관점에서 React 바라보기

@@ -50,8 +50,8 @@ npm start
   - Following Count
   - Repository Count
 - [ ] Popular -> Battle & Battle 진행 -> Popular -> Battle 순으로 진행한다면, 바로 이전에 진행했던 대결 결과가 여전히 보여져야 합니다.
-- [ ] 클래스 기반 컴포넌트로 작업되어 있는 `<Loading />` 컴포넌트를 함수형 컴포넌트로 수정하세요.
 - [ ] `<Loading />` 컴포넌트에 대한 Unit Test를 보완하세요. (`/spec/Loading.spec.js`) 참고: [Testing React Apps](https://create-react-app.dev/docs/running-tests/)
+- [ ] 클래스 기반 컴포넌트로 작업되어 있는 `<Loading />` 컴포넌트를 함수형 컴포넌트로 수정하세요.
 - [ ] `utils/api.js`에는 현재 리팩터링 작업이 진행 중입니다. 마무리 되지 않은 리팩터링 작업을 끝내주세요.
   1. `getProfile` 함수와 `getRepos` 함수를 Async/Await 기반으로 리팩터링 하기
   2. `request` 함수를 [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch)로 대체하기 (Async/Await 기반)

@@ -15,13 +15,13 @@ import POPULAR_REPOS from "./popularRepos.json";
   7. Enter your Client ID and Secret ID below
 
  */
-const GITHUB_CLIENT_ID = "GITHUB_CLIENT_ID";
-const GITHUB_SECRET_ID = "GITHUB_SECRET_ID";
+const GITHUB_CLIENT_ID = "6704e73810cdec2a1372";
+const GITHUB_SECRET_ID = "572a2f3a0b1fbb76035f0c1d0c0977df1ad74ab6";
 
 const defaultParams = `?client_id=${GITHUB_CLIENT_ID}&client_secret=${GITHUB_SECRET_ID}`;
 
 // NOTE: Toggle this value to use mock data.
-const USE_MOCK_DATA = false;
+const USE_MOCK_DATA = true;
 
 function getErrorMsg(message, username) {
   if (message === "Not Found") {
@@ -47,14 +47,14 @@ function request(uri) {
 }
 
 // TODO: Refactor with `async/await`
-function getProfile(username) {
+export async function getProfile(username) {
   if (USE_MOCK_DATA) {
     return new Promise(function (resolve) {
       resolve(PROFILE);
     });
   }
 
-  return request(
+  return await request(
     `https://api.github.com/users/${username}${defaultParams}`
   ).then((profile) => {
     console.log(`PROFILE:::`, JSON.stringify(JSON.parse(profile)));
@@ -67,14 +67,14 @@ function getProfile(username) {
 }
 
 // TODO: Refactor with `async/await`
-function getRepos(username) {
+export async function getRepos(username) {
   if (USE_MOCK_DATA) {
     return new Promise(function (resolve) {
       resolve(PERSONAL_REPOS);
     });
   }
 
-  return request(
+  return await request(
     `https://api.github.com/users/${username}/repos${defaultParams}&per_page=100`
   ).then((repos) => {
     console.log(`REPOSE:::`, JSON.stringify(JSON.parse(repos)));

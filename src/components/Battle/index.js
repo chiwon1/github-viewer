@@ -1,26 +1,40 @@
 import React, { useState } from "react";
+import UsersToBattle from "../UsersToBattle";
 
 export default function Battle() {
-  const [text, setText] = useState("");
+  const [inputs, setInputs] = useState({
+    user1: '',
+    user2: '',
+  });
+
+  const { user1, user2 } = inputs;
 
   function onChange(event) {
-    setText(event.target.value);
+    const { name, value } = event.target;
+    setInputs({
+      ...inputs,
+      [name]: value,
+    });
   }
 
-  function onClick(event) {
-    event.preventDefault();
-    console.log("event.target.value", event.target.value);
+  const [isInput, setIsInput] = useState(false);
+
+  function onClick() {
+    setIsInput(true);
+    console.log("user1", user1);
+    console.log("user2", user2);
   }
 
   return (
     <div>
       <h1 className="center-text">This is Battle!</h1>
-      <form>
-        <input placeholder="User 1" onChange={onChange}/>
-        <br></br>
-        <input placeholder="User 2" onChange={onChange}/>
-        <button onClick={onClick}>입력</button>
-      </form>
+      <div>
+        <input type="text" name="user1" value={user1} placeholder="user1" onChange={onChange}/>
+        <input type="text" name="user2" value={user2} placeholder="user2" onChange={onChange}/>
+        <button onClick={onClick}>Battle Start</button>
+      </div>
+      {/* {!showBattle && <Popular />} */}
+      {isInput && <UsersToBattle/>}
     </div>
   );
 }

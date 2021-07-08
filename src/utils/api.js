@@ -47,14 +47,14 @@ function request(uri) {
 }
 
 // TODO: Refactor with `async/await`
-export async function getProfile(username) {
+export function getProfile(username) {
   if (USE_MOCK_DATA) {
     return new Promise(function (resolve) {
       resolve(PROFILE);
     });
   }
 
-  return await request(
+  return request(
     `https://api.github.com/users/${username}${defaultParams}`
   ).then((profile) => {
     console.log(`PROFILE:::`, JSON.stringify(JSON.parse(profile)));

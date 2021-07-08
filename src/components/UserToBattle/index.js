@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { getRepos } from "../../utils/api";
-import ReposGrid from "../ReposGrid";
+import { getProfile } from "../../utils/api";
+import BattleGrid from '../BattleGrid';
 
-function UsersToBattle() {
+export default function UsersToBattle() {
   const USER_ID = "Ken123777";
   const [inputUserId, setInputUserId] = useState(USER_ID);
-  const [repos, setRepos] = useState({});
+  const [profile, setProfile] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -16,12 +16,12 @@ function UsersToBattle() {
     setInputUserId(inputUserId);
     setError(null);
 
-    getRepos(inputUserId)
+    getProfile(inputUserId)
       .then((data) => {
-        setRepos({
-          ...repos,
-          [inputUserId]: data,
-        });
+        // console.log("profiles", profiles);
+        // console.log("data", data);
+        // console.log("[...profiles, data]", [...profiles, data]);
+        setProfile([...profile, data]);
       })
       .catch(() => {
         console.warn("요청 오류: ", error);
@@ -38,9 +38,7 @@ function UsersToBattle() {
 
       {/* {error && <p className="center-text error">{error}</p>} */}
 
-      {repos[inputUserId] && <ReposGrid repos={repos[inputUserId]} />}
+      {profile.length == 1 && <BattleGrid profile={profile} />}
     </>
   );
 }
-
-export default UsersToBattle;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import UsersToBattle from "../UsersToBattle";
+import UserToBattle from "../UserToBattle";
 
 export default function Battle() {
   const [inputs, setInputs] = useState({
@@ -30,11 +30,15 @@ export default function Battle() {
       <h1 className="center-text">This is Battle!</h1>
       <div>
         <input type="text" name="user1" value={user1} placeholder="user1" onChange={onChange}/>
+        <button onClick={onClick}>Add user 1</button>
         <input type="text" name="user2" value={user2} placeholder="user2" onChange={onChange}/>
-        <button onClick={onClick}>Battle Start</button>
+        <button onClick={onClick}>Add user 2</button>
       </div>
-      {/* {!showBattle && <Popular />} */}
-      {isInput && <UsersToBattle/>}
+      <button>Battle Start</button>
+      <UserToBattle/>
+      <UserToBattle/>
+      {/* {isInputUser1 && <UsersToBattle/>}
+      {isInputUser2 && <UsersToBattle/>} */}
     </div>
   );
 }

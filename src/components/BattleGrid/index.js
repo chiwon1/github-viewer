@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from "prop-types";
+import { FaStar, FaCodeBranch, FaExclamationTriangle } from "react-icons/fa";
+import Card from "../Card";
 
-export default function BattleGrid({ repos: profiles }) {
+export default function BattleGrid({ profile }) {
+  console.log("profiles", profile);
   return (
     <ul className="grid space-between">
-      {profiles.map((repo, index) => {
-        const { owner, html_url, stargazers_count, forks, open_issues } = repo;
-        const { login, avatar_url } = owner;
+      {profile.map((profile, index) => {
+        const { login, html_url, avatar_url, location, followers, following, public_repos } = profile;
 
         return (
           <li key={html_url}>
@@ -19,15 +21,15 @@ export default function BattleGrid({ repos: profiles }) {
               <ul className="card-list">
                 <li>
                   <FaStar color="rgb(255, 215, 0)" size={12} />{" "}
-                  {stargazers_count.toLocaleString()} stars
+                  {/* {stargazers_count.toLocaleString()} stars */}
                 </li>
                 <li>
                   <FaCodeBranch color="rgb(129, 195, 245)" size={12} />{" "}
-                  {forks.toLocaleString()} forks
+                  {/* {forks.toLocaleString()} forks */}
                 </li>
                 <li>
                   <FaExclamationTriangle color="rgb(241, 138, 147)" size={12} />{" "}
-                  {open_issues.toLocaleString()} open
+                  {/* {open_issues.toLocaleString()} open */}
                 </li>
               </ul>
             </Card>
@@ -38,6 +40,6 @@ export default function BattleGrid({ repos: profiles }) {
   );
 }
 
-ReposGrid.propTypes = {
+BattleGrid.propTypes = {
   repos: PropTypes.array.isRequired,
 };

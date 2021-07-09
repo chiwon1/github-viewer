@@ -1,0 +1,23 @@
+.battle-container {
+  width: 1000px;
+  height: 500px;
+  border: 1px solid black;
+}
+
+.battle-button {
+  width: 70px;
+  height: 30px;
+  border: 1px solid black;
+}
+
+.upper-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.lower-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}

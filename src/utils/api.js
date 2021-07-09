@@ -21,7 +21,7 @@ const GITHUB_SECRET_ID = "572a2f3a0b1fbb76035f0c1d0c0977df1ad74ab6";
 const defaultParams = `?client_id=${GITHUB_CLIENT_ID}&client_secret=${GITHUB_SECRET_ID}`;
 
 // NOTE: Toggle this value to use mock data.
-const USE_MOCK_DATA = true;
+const USE_MOCK_DATA = false;
 
 function getErrorMsg(message, username) {
   if (message === "Not Found") {
@@ -62,7 +62,7 @@ export function getProfile(username) {
       throw new Error(getErrorMsg(profile.message, username));
     }
 
-    return profile;
+    return JSON.parse(profile);
   });
 }
 
@@ -82,7 +82,7 @@ export async function getRepos(username) {
       throw new Error(getErrorMsg(repos.message, username));
     }
 
-    return repos;
+    return JSON.parse(repos);
   });
 }
 

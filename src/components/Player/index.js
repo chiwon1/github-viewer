@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { getProfile } from "../../utils/api";
 import BattleGrid from '../BattleGrid';
 
-export default function UsersToBattle() {
-  const USER_ID = "Ken123777";
+export default function Player() {
+  const USER_ID = "facebook";
   const [inputUserId, setInputUserId] = useState(USER_ID);
-  const [profile, setProfile] = useState([]);
+  const [profile, setProfile] = useState();
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -13,7 +13,7 @@ export default function UsersToBattle() {
   }, []);
 
   function updateUsersToSearch(inputUserId) {
-    setInputUserId(inputUserId);
+    // setInputUserId(inputUserId);
     setError(null);
 
     getProfile(inputUserId)
@@ -21,7 +21,7 @@ export default function UsersToBattle() {
         // console.log("profiles", profiles);
         // console.log("data", data);
         // console.log("[...profiles, data]", [...profiles, data]);
-        setProfile([...profile, data]);
+        setProfile(data);
       })
       .catch(() => {
         console.warn("요청 오류: ", error);
@@ -32,13 +32,15 @@ export default function UsersToBattle() {
       });
   }
 
+  // console.log("profile", profile);
+
   return (
-    <>
+    <div className="player">
       {/* {isLoading() && <Loading text="가져오는 중입니다" />} */}
 
       {/* {error && <p className="center-text error">{error}</p>} */}
 
-      {profile.length == 1 && <BattleGrid profile={profile} />}
-    </>
+      {profile && <BattleGrid profile={profile} />}
+    </div>
   );
 }

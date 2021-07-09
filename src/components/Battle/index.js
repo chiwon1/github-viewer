@@ -2,7 +2,18 @@ import React, { useState } from "react";
 import Player from "../Player";
 import "./styles.css";
 
-export default function Battle({ inputs, updateInputs, playersInfo, updatePlayersInfo, battleResult, updateBattleResult }) {
+export default function Battle({
+  inputs,
+  updateInputs,
+  playersInfo,
+  battleResult,
+  updateBattleResult,
+  updatePlayerToSearch,
+  isLoading,
+  error,
+  isInput,
+  handleIsInput
+  }) {
   const { player1, player2 } = inputs;
 
   function onChange(event) {
@@ -13,11 +24,6 @@ export default function Battle({ inputs, updateInputs, playersInfo, updatePlayer
     });
   }
 
-  const [isInput, setIsInput] = useState({
-    isPlayer1Input: false,
-    isPlayer2Input: false,
-  });
-
   function onClick(event) {
     const { name } = event.target;
 
@@ -25,18 +31,18 @@ export default function Battle({ inputs, updateInputs, playersInfo, updatePlayer
 
     if (name === "player1") {
       player = "isPlayer1Input";
+      updatePlayerToSearch(inputs.player1, name);
     } else if (name === "player2") {
       player = "isPlayer2Input";
+      updatePlayerToSearch(inputs.player2, name);
     }
 
-    setIsInput({
+    isLoading(name);
+
+    handleIsInput({
       ...isInput,
       [player]: true,
     });
-  }
-
-  function handleIsInput(value) {
-    setIsInput(value);
   }
 
   function onBattle() {
@@ -56,13 +62,15 @@ export default function Battle({ inputs, updateInputs, playersInfo, updatePlayer
     <div className="frame">
       <h1 className="center-text">This is Battle!</h1>
       <div className="battle-container">
-
         <div className="player1-container">
           <input type="text" name="player1" value={player1} placeholder="player1" onChange={onChange}/>
           <button name="player1" onClick={onClick}>Add Player 1</button>
-          {isInput.isPlayer1Input && <Player player="player1" playerId={inputs.player1}  playersInfo={playersInfo} updatePlayersInfo={updatePlayersInfo}
-          inputs={inputs}
-          updateInputs={updateInputs}
+          {isInput.isPlayer1Input &&
+          <Player
+          player="player1"
+          playersInfo={playersInfo}
+          error={error}
+          isLoading={isLoading}
           />}
         </div>
 
@@ -74,12 +82,13 @@ export default function Battle({ inputs, updateInputs, playersInfo, updatePlayer
         <div className="player2-container">
           <input type="player2" name="player2" value={player2} placeholder="player2" onChange={onChange}/>
           <button name="player2" onClick={onClick}>Add Player 2</button>
-          {isInput.isPlayer2Input && <Player player="player2" playerId={inputs.player2} playersInfo={playersInfo} updatePlayersInfo={updatePlayersInfo}
-          inputs={inputs}
-          updateInputs={updateInputs}
+          {isInput.isPlayer2Input && <Player
+          player="player2"
+          playersInfo={playersInfo}
+          error={error}
+          isLoading={isLoading}
           />}
         </div>
-
       </div>
     </div>
   );

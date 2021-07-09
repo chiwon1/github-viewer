@@ -17,6 +17,15 @@ export default function App() {
     player2: '',
   });
 
+  const [isInput, setIsInput] = useState({
+    isPlayer1Input: false,
+    isPlayer2Input: false,
+  });
+
+  function handleIsInput(value) {
+    setIsInput(value);
+  }
+
   function updateInputs(value) {
     setInputs(value);
   }
@@ -36,6 +45,37 @@ export default function App() {
     setBattleResult(value);
   }
 
+  const [error, setError] = useState({
+    player1: null,
+    player2: null,
+  });
+
+  function updatePlayerToSearch(playerId, player) {
+    setError({
+      player1: null,
+      player2: null,
+    });
+
+    getUserData(playerId)
+      .then((data) => {
+        updatePlayersInfo({
+          ...playersInfo,
+          [player]: data,
+        });
+      })
+      .catch(() => {
+        console.warn("요청 오류: ", error);
+
+        setError({
+          ...error,
+          [player]: "저장소 정보를 가져오는데 실패하였습니다.",
+        });
+      });
+  }
+
+  function isLoading(player) {
+    return !playersInfo[player] && error[player] === null;
+  }
 
   return (
     <div className="container">
@@ -60,6 +100,11 @@ export default function App() {
         updatePlayersInfo={updatePlayersInfo}
         battleResult={battleResult}
         updateBattleResult={updateBattleResult}
+        updatePlayerToSearch={updatePlayerToSearch}
+        isLoading={isLoading}
+        error={error}
+        isInput={isInput}
+        handleIsInput={handleIsInput}
         />}
     </div>
   );

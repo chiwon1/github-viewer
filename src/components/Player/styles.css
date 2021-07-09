@@ -1,3 +1,6 @@
-.player {
-  display: inline-block;
+.center-text-error {
+  margin-left: 20px;
+  width: 250px;
+  font-size: 14px;
+  color: red;
 }

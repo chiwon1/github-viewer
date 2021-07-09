@@ -1,7 +1,4 @@
 import React from 'react';
-import { FaStar, FaCodeBranch, FaExclamationTriangle } from "react-icons/fa";
-import Card from "../Card";
-import Player from '../Player';
 import PlayerCard from '../PlayerCard';
 
 export default function BattleGrid({ playersInfo }) {

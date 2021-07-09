@@ -3,6 +3,7 @@ import Popular from "../Popular";
 import Battle from "../Battle";
 import NavButton from "../NavButton";
 import "./styles.css";
+import { getUserData } from "../../utils/api";
 
 export default function App() {
   const [showBattle, setShowBattle] = useState(false);
@@ -10,6 +11,31 @@ export default function App() {
   function toggleView(showBattle) {
     setShowBattle(showBattle);
   }
+
+  const [inputs, setInputs] = useState({
+    player1: '',
+    player2: '',
+  });
+
+  function updateInputs(value) {
+    setInputs(value);
+  }
+
+  const [playersInfo, setPlayersInfo] = useState({
+    player1: '',
+    player2: '',
+  });
+
+  function updatePlayersInfo(value) {
+    setPlayersInfo(value);
+  }
+
+  const [battleResult, setBattleResult] = useState();
+
+  function updateBattleResult(value) {
+    setBattleResult(value);
+  }
+
 
   return (
     <div className="container">
@@ -26,7 +52,15 @@ export default function App() {
         />
       </div>
       {!showBattle && <Popular />}
-      {showBattle && <Battle />}
+      {showBattle &&
+      <Battle
+        inputs={inputs}
+        updateInputs={updateInputs}
+        playersInfo={playersInfo}
+        updatePlayersInfo={updatePlayersInfo}
+        battleResult={battleResult}
+        updateBattleResult={updateBattleResult}
+        />}
     </div>
   );
 }

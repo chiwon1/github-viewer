@@ -97,7 +97,7 @@ function calculateScore(followers, repos) {
   return followers * 3 + getStarCount(repos);
 }
 
-async function getUserData(player) {
+export async function getUserData(player) {
   const profile = await getProfile(player);
   const repos = await getRepos(player);
 
@@ -115,7 +115,7 @@ export async function battle([player1, player2]) {
   const playerOne = getUserData(player1);
   const playerTwo = getUserData(player2);
 
-  return sortPlayers([await playerOne, await playerTwo]);
+  return [await playerOne, await playerTwo];
 }
 
 export async function fetchPopularRepos(language) {

@@ -10,7 +10,6 @@ export default function ReposGrid({ repos }) {
       {repos.map((repo, index) => {
         const { owner, html_url, stargazers_count, forks, open_issues } = repo;
         const { login, avatar_url } = owner;
-        console.log("repo", repo);
 
         return (
           <li key={html_url}>

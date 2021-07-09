@@ -1,39 +1,41 @@
 import React from 'react';
-import PropTypes from "prop-types";
 import { FaStar, FaCodeBranch, FaExclamationTriangle } from "react-icons/fa";
 import Card from "../Card";
+import Player from '../Player';
+import PlayerCard from '../PlayerCard';
 
-export default function BattleGrid({ profile }) {
-  const { login, html_url, avatar_url, location, followers, following, public_repos } = profile;
-  console.log("profile", profile);
-  console.log("profile.login", profile.login);
-  console.log(profile[login]);
+export default function BattleGrid({ playersInfo }) {
+  const { profile, score } = playersInfo;
+
+  const {
+    login,
+    name,
+    location,
+    followers,
+    following,
+    public_repos,
+    html_url,
+    avatar_url,
+  } = profile;
 
   return (
-    <ul className="grid space-between">
+    <ul>
       <li key={html_url}>
-        <Card
-          header="1"
+        <PlayerCard
           avatar={avatar_url}
+          score={score}
+          login={login}
+          name={name}
+          location={location}
+          followers={followers}
+          following={following}
+          public_repos={public_repos}
           href={html_url}
-          name={login}
         >
-          <ul className="card-list">
-            <li>
-              <FaStar color="rgb(255, 215, 0)" size={12} />{" "}
-              {/* {stargazers_count.toLocaleString()} stars */}
-            </li>
-            <li>
-              <FaCodeBranch color="rgb(129, 195, 245)" size={12} />{" "}
-              {/* {forks.toLocaleString()} forks */}
-            </li>
-            <li>
-              <FaExclamationTriangle color="rgb(241, 138, 147)" size={12} />{" "}
-              {/* {open_issues.toLocaleString()} open */}
-            </li>
-          </ul>
-        </Card>
+        </PlayerCard>
       </li>
     </ul>
   );
 }
+
+

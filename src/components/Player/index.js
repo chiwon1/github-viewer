@@ -1,27 +1,29 @@
 import React, { useState, useEffect } from "react";
-import { getProfile } from "../../utils/api";
+import { getUserData } from "../../utils/api";
 import BattleGrid from '../BattleGrid';
+import Loading from '../Loading';
 
-export default function Player() {
-  const USER_ID = "facebook";
-  const [inputUserId, setInputUserId] = useState(USER_ID);
-  const [profile, setProfile] = useState();
+export default function Player({ player, playerId, playersInfo, updatePlayersInfo, inputs, updateInputs }) {
+  const PLAYER_ID = playerId;
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    updateUsersToSearch(inputUserId);
+    updatePlayerToSearch(PLAYER_ID);
+    updateInputs({
+      ...inputs,
+      [player]: '',
+    });
   }, []);
 
-  function updateUsersToSearch(inputUserId) {
-    // setInputUserId(inputUserId);
+  function updatePlayerToSearch(playerId) {
     setError(null);
 
-    getProfile(inputUserId)
+    getUserData(playerId)
       .then((data) => {
-        // console.log("profiles", profiles);
-        // console.log("data", data);
-        // console.log("[...profiles, data]", [...profiles, data]);
-        setProfile(data);
+        updatePlayersInfo({
+          ...playersInfo,
+          [player]: data,
+        });
       })
       .catch(() => {
         console.warn("요청 오류: ", error);
@@ -32,15 +34,19 @@ export default function Player() {
       });
   }
 
-  // console.log("profile", profile);
+  function isLoading() {
+    return !playersInfo[player] && error === null;
+  }
+
+
 
   return (
     <div className="player">
-      {/* {isLoading() && <Loading text="가져오는 중입니다" />} */}
+      {isLoading() && <Loading text="가져오는 중입니다" />}
 
-      {/* {error && <p className="center-text error">{error}</p>} */}
+      {error && <p className="center-text error">{error.error}</p>}
 
-      {profile && <BattleGrid profile={profile} />}
+      {playersInfo[player] && <BattleGrid playersInfo={playersInfo[player]}/>}
     </div>
   );
 }

@@ -39,8 +39,6 @@ export default function Popular() {
     return !repos[selectedLanguage] && error === null;
   }
 
-  console.log("repos[selectedLanguage]", repos[selectedLanguage]);
-
   return (
     <>
       <LanguagesNavigation

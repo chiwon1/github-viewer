@@ -1,22 +1,39 @@
 import React from 'react';
+import "./styles.css";
 
 export default function PlayerCard({
-  subheader,
   avatar,
-  href,
+  score,
+  login,
   name,
-  children,
+  location,
+  followers,
+  following,
+  public_repos,
+  href,
 }) {
+
+  if (name === null) {
+    name = login;
+  }
+
   return (
     <div className="card">
       <img className="avatar" src={avatar} alt={`Avatar for ${name}`} />
-      {subheader && <h4 className="center-text">{subheader}</h4>}
-      <h2 className="header-sm center-text">
-        <a className="link" href={href}>
+      <div className="link">
+        <a href={href}>
           {name}
         </a>
-      </h2>
-      {children}
+      </div>
+        <ul>
+          <li>score : {score}</li>
+          <li>Github Username : {login}</li>
+          <li>name : {name}</li>
+          <li>location : {location}</li>
+          <li>followers : {followers}</li>
+          <li>following : {following}</li>
+          <li>Repository Count : {public_repos}</li>
+        </ul>
     </div>
   );
 }

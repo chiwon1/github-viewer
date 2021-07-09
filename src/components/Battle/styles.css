@@ -1,4 +1,11 @@
 .battle-container {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: space-around;
   width: 1000px;
   height: 500px;
   border: 1px solid black;
@@ -10,14 +17,9 @@
   border: 1px solid black;
 }
 
-.upper-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
-
-.lower-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
+.result-message {
+  text-align: center;
+  width: 100px;
+  height: 100px;
+  font-size: 30px;
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import BattleGrid from '../BattleGrid';
 import Loading from '../Loading';
+import PlayerCard from '../PlayerCard';
 import "./styles.css";
 
 export default function Player({ player, playersInfo, isLoading, error }) {
@@ -10,7 +11,9 @@ export default function Player({ player, playersInfo, isLoading, error }) {
 
       {error[player] && <p className="center-text-error">{error[player]}</p>}
 
-      {playersInfo[player] && <BattleGrid playersInfo={playersInfo[player]}/>}
+      {playersInfo[player] && <PlayerCard
+      playersInfo={playersInfo[player]}
+      ></PlayerCard>}
     </div>
   );
 }

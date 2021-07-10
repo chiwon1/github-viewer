@@ -17,17 +17,17 @@ export default function App() {
     player2: '',
   });
 
-  const [isInput, setIsInput] = useState({
-    isPlayer1Input: false,
-    isPlayer2Input: false,
-  });
-
-  function handleIsInput(value) {
-    setIsInput(value);
-  }
-
   function updateInputs(value) {
     setInputs(value);
+  }
+
+  const [isInputs, setIsInputs] = useState({
+    player1: false,
+    player2: false,
+  });
+
+  function updateIsInputs(value) {
+    setIsInputs(value);
   }
 
   const [playersInfo, setPlayersInfo] = useState({
@@ -52,8 +52,8 @@ export default function App() {
 
   function updatePlayerToSearch(playerId, player) {
     setError({
-      player1: null,
-      player2: null,
+      ...error,
+      [player]: null,
     });
 
     getUserData(playerId)
@@ -103,8 +103,8 @@ export default function App() {
         updatePlayerToSearch={updatePlayerToSearch}
         isLoading={isLoading}
         error={error}
-        isInput={isInput}
-        handleIsInput={handleIsInput}
+        isInputs={isInputs}
+        updateIsInputs={updateIsInputs}
         />}
     </div>
   );

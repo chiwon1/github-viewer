@@ -31,42 +31,26 @@ function getErrorMsg(message, username) {
   return message;
 }
 
-function request(uri) {
-  return new Promise(function (resolve, reject) {
-    const xhr = new XMLHttpRequest();
-
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState === XMLHttpRequest.DONE) {
-        resolve(xhr.responseText);
-      }
-    };
-
-    xhr.open("GET", uri, true);
-    xhr.send(null);
-  });
-}
-
-// TODO: Refactor with `async/await`
-export function getProfile(username) {
+export async function getProfile(username) {
   if (USE_MOCK_DATA) {
     return new Promise(function (resolve) {
       resolve(PROFILE);
     });
   }
 
-  return request(
+  const response = await fetch(
     `https://api.github.com/users/${username}${defaultParams}`
-  ).then((profile) => {
-    console.log(`PROFILE:::`, JSON.stringify(JSON.parse(profile)));
-    if (profile.message) {
-      throw new Error(getErrorMsg(profile.message, username));
-    }
+  )
 
-    return JSON.parse(profile);
-  });
+  const profile = await response.json();
+
+  if (profile.message) {
+    throw new Error(getErrorMsg(profile.message, username));
+  }
+
+  return profile;
 }
 
-// TODO: Refactor with `async/await`
 export async function getRepos(username) {
   if (USE_MOCK_DATA) {
     return new Promise(function (resolve) {
@@ -74,16 +58,15 @@ export async function getRepos(username) {
     });
   }
 
-  return await request(
-    `https://api.github.com/users/${username}/repos${defaultParams}&per_page=100`
-  ).then((repos) => {
-    console.log(`REPOSE:::`, JSON.stringify(JSON.parse(repos)));
-    if (repos.message) {
-      throw new Error(getErrorMsg(repos.message, username));
-    }
+  const response = await fetch(`https://api.github.com/users/${username}/repos${defaultParams}&per_page=100`);
 
-    return JSON.parse(repos);
-  });
+  const repos = await response.json();
+
+  if (repos.message) {
+    throw new Error(getErrorMsg(repos.message, username));
+  }
+
+  return repos;
 }
 
 function getStarCount(repos) {
@@ -105,10 +88,6 @@ export async function getUserData(player) {
     profile,
     score: calculateScore(profile.followers, repos),
   };
-}
-
-function sortPlayers(players) {
-  return players.sort((a, b) => b.score - a.score);
 }
 
 export async function battle([player1, player2]) {

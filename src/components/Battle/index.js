@@ -11,8 +11,8 @@ export default function Battle({
   updatePlayerToSearch,
   isLoading,
   error,
-  isInput,
-  handleIsInput
+  isInputs,
+  updateIsInputs
   }) {
   const { player1, player2 } = inputs;
 
@@ -27,35 +27,30 @@ export default function Battle({
   function onClick(event) {
     const { name } = event.target;
 
-    let player = "";
-
-    if (name === "player1") {
-      player = "isPlayer1Input";
-      updatePlayerToSearch(inputs.player1, name);
-    } else if (name === "player2") {
-      player = "isPlayer2Input";
-      updatePlayerToSearch(inputs.player2, name);
-    }
+    updatePlayerToSearch(inputs[name], name);
 
     isLoading(name);
 
-    handleIsInput({
-      ...isInput,
-      [player]: true,
+    updateIsInputs({
+      ...isInputs,
+      [name]: true,
     });
   }
 
   function onBattle() {
     const scoreOfPlayer1 = playersInfo.player1.score;
     const scoreOfPlayer2 = playersInfo.player2.score;
+    let resultMessage = '';
 
     if (scoreOfPlayer1 > scoreOfPlayer2) {
-      updateBattleResult("Player 1 Win");
+      resultMessage = "Player 1 Win";
     } else if (scoreOfPlayer1 < scoreOfPlayer2) {
-      updateBattleResult("Player 2 Win");
+      resultMessage = "Player 2 Win";
     } else {
-      updateBattleResult("Draw");
+      resultMessage = "Draw";
     }
+
+    updateBattleResult(resultMessage);
   }
 
   return (
@@ -65,7 +60,7 @@ export default function Battle({
         <div className="player1-container">
           <input type="text" name="player1" value={player1} placeholder="player1" onChange={onChange}/>
           <button name="player1" onClick={onClick}>Add Player 1</button>
-          {isInput.isPlayer1Input &&
+          {isInputs.player1 &&
           <Player
           player="player1"
           playersInfo={playersInfo}
@@ -76,13 +71,14 @@ export default function Battle({
 
         <div className="middle-container">
           {battleResult && <div className="result-message">{battleResult}</div>}
-          {isInput.isPlayer1Input && isInput.isPlayer2Input && <button className="battle-button" onClick={onBattle}>Battle!</button>}
+          {isInputs.player1 && isInputs.player2 && <button className="battle-button" onClick={onBattle}>Battle!</button>}
         </div>
 
         <div className="player2-container">
           <input type="player2" name="player2" value={player2} placeholder="player2" onChange={onChange}/>
           <button name="player2" onClick={onClick}>Add Player 2</button>
-          {isInput.isPlayer2Input && <Player
+          {isInputs.player2 &&
+          <Player
           player="player2"
           playersInfo={playersInfo}
           error={error}

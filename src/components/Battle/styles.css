@@ -17,9 +17,15 @@
   border: 1px solid black;
 }
 
+.middle-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 200px;
+}
+
 .result-message {
-  text-align: center;
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 70px;
   font-size: 30px;
 }

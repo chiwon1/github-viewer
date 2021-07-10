@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Player from "../Player";
 import "./styles.css";
 
@@ -6,6 +6,7 @@ export default function Battle({
   inputs,
   updateInputs,
   playersInfo,
+  updatePlayersInfo,
   battleResult,
   updateBattleResult,
   updatePlayerToSearch,
@@ -27,6 +28,11 @@ export default function Battle({
   function onClick(event) {
     const { name } = event.target;
 
+    updatePlayersInfo({
+      ...playersInfo,
+      [name]: '',
+    });
+
     updatePlayerToSearch(inputs[name], name);
 
     isLoading(name);
@@ -35,6 +41,8 @@ export default function Battle({
       ...isInputs,
       [name]: true,
     });
+    if (playersInfo[name]) {
+    }
   }
 
   function onBattle() {
@@ -71,7 +79,7 @@ export default function Battle({
 
         <div className="middle-container">
           {battleResult && <div className="result-message">{battleResult}</div>}
-          {isInputs.player1 && isInputs.player2 && <button className="battle-button" onClick={onBattle}>Battle!</button>}
+          {playersInfo.player1 && playersInfo.player2 && <button className="battle-button" onClick={onBattle}>Battle!</button>}
         </div>
 
         <div className="player2-container">

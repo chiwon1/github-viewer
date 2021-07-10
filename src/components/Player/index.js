@@ -1,5 +1,4 @@
 import React from "react";
-import BattleGrid from '../BattleGrid';
 import Loading from '../Loading';
 import PlayerCard from '../PlayerCard';
 import "./styles.css";

@@ -28,6 +28,8 @@ export default function Battle({
   function onClick(event) {
     const { name } = event.target;
 
+    updateBattleResult();
+
     updatePlayersInfo({
       ...playersInfo,
       [name]: '',

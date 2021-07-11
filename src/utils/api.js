@@ -7,6 +7,8 @@ dotenv.config();
 const GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID;
 const GITHUB_SECRET_ID = process.env.GITHUB_SECRET_ID;
 
+const NUMBER_OF_REPOS_PER_PAGE = 100;
+
 const defaultParams = `?client_id=${GITHUB_CLIENT_ID}&client_secret=${GITHUB_SECRET_ID}`;
 
 // NOTE: Toggle this value to use mock data.
@@ -47,7 +49,7 @@ export async function getRepos(username) {
     });
   }
 
-  const response = await fetch(`https://api.github.com/users/${username}/repos${defaultParams}&per_page=100`);
+  const response = await fetch(`https://api.github.com/users/${username}/repos${defaultParams}&per_page=${NUMBER_OF_REPOS_PER_PAGE}`);
 
   const repos = await response.json();
 

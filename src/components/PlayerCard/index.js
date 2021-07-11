@@ -10,16 +10,16 @@ export default function PlayerCard({ playersInfo }) {
     location,
     followers,
     following,
-    public_repos,
-    html_url,
-    avatar_url,
+    public_repos: publicRepos,
+    html_url: htmlUrl,
+    avatar_url: avatarUrl,
   } = profile;
 
   return (
     <div className="card">
-      <img className="avatar" src={avatar_url} alt={`Avatar for ${name}`} />
+      <img className="avatar" src={avatarUrl} alt={`Avatar for ${name}`} />
       <div className="link">
-        <a href={html_url}>
+        <a href={htmlUrl}>
           {name}
         </a>
       </div>
@@ -30,7 +30,7 @@ export default function PlayerCard({ playersInfo }) {
           <li>location : {location}</li>
           <li>followers : {followers}</li>
           <li>following : {following}</li>
-          <li>Repository Count : {public_repos}</li>
+          <li>Repository Count : {publicRepos}</li>
         </ul>
     </div>
   );

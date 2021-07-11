@@ -1,22 +1,11 @@
 import PROFILE from "./profile.json";
 import PERSONAL_REPOS from "./personalRepositories.json";
 import POPULAR_REPOS from "./popularRepos.json";
+import dotenv from "dotenv";
+dotenv.config();
 
-/*
-
-  TODO: Enter your own Github client id and secret id below
-
-  1. Visit Github.com
-  2. Visit User Settings (https://github.com/settings/profile)
-  3. Select "Developer Settings"
-  4. Select "Oauth Apps"
-  5. Select "New Oauth App"
-  6. Enter "http://localhost:8080" for homepage & callback URL
-  7. Enter your Client ID and Secret ID below
-
- */
-const GITHUB_CLIENT_ID = "6704e73810cdec2a1372";
-const GITHUB_SECRET_ID = "572a2f3a0b1fbb76035f0c1d0c0977df1ad74ab6";
+const GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID;
+const GITHUB_SECRET_ID = process.env.GITHUB_SECRET_ID;
 
 const defaultParams = `?client_id=${GITHUB_CLIENT_ID}&client_secret=${GITHUB_SECRET_ID}`;
 

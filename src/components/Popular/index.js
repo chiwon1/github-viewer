@@ -13,7 +13,7 @@ export default function Popular() {
 
   useEffect(() => {
     updateLanguage(selectedLanguage);
-  }, []);
+  }, [selectedLanguage, updateLanguage]);
 
   function updateLanguage(selectedLanguage) {
     setSelectedLanguage(selectedLanguage);

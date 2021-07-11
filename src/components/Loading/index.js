@@ -15,7 +15,7 @@ export default function Loading({ text, speed }) {
     return (() => {
       window.clearInterval(interval);
     });
-  }, []);
+  }, [content, speed, text]);
 
   return (
     <p className="content">{content}</p>

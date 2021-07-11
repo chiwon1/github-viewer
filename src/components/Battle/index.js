@@ -25,10 +25,14 @@ export default function Battle({
     });
   }
 
-  function onClick(event) {
+  function resetBattleResult() {
+    updateBattleResult();
+  }
+
+  function onAddPlayer(event) {
     const { name } = event.target;
 
-    updateBattleResult();
+    resetBattleResult();
 
     updatePlayersInfo({
       ...playersInfo,
@@ -43,8 +47,6 @@ export default function Battle({
       ...isInputs,
       [name]: true,
     });
-    if (playersInfo[name]) {
-    }
   }
 
   function onBattle() {
@@ -69,14 +71,14 @@ export default function Battle({
       <div className="battle-container">
         <div className="player1-container">
           <input type="text" name="player1" value={player1} placeholder="player1" onChange={onChange}/>
-          <button name="player1" onClick={onClick}>Add Player 1</button>
+          <button name="player1" onClick={onAddPlayer}>Add Player 1</button>
           {isInputs.player1 &&
-          <Player
-          player="player1"
-          playersInfo={playersInfo}
-          error={error}
-          isLoading={isLoading}
-          />}
+            <Player
+              player="player1"
+              playersInfo={playersInfo}
+              error={error}
+              isLoading={isLoading}
+            />}
         </div>
 
         <div className="middle-container">
@@ -86,14 +88,14 @@ export default function Battle({
 
         <div className="player2-container">
           <input type="player2" name="player2" value={player2} placeholder="player2" onChange={onChange}/>
-          <button name="player2" onClick={onClick}>Add Player 2</button>
+          <button name="player2" onClick={onAddPlayer}>Add Player 2</button>
           {isInputs.player2 &&
-          <Player
-          player="player2"
-          playersInfo={playersInfo}
-          error={error}
-          isLoading={isLoading}
-          />}
+            <Player
+              player="player2"
+              playersInfo={playersInfo}
+              error={error}
+              isLoading={isLoading}
+            />}
         </div>
       </div>
     </div>

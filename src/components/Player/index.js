@@ -11,8 +11,8 @@ export default function Player({ player, playersInfo, isLoading, error }) {
       {error[player] && <p className="center-text-error">{error[player]}</p>}
 
       {playersInfo[player] && <PlayerCard
-      playersInfo={playersInfo[player]}
-      ></PlayerCard>}
+        playersInfo={playersInfo[player]}
+      />}
     </div>
   );
 }
